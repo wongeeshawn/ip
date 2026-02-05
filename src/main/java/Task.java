@@ -1,3 +1,7 @@
+/**
+ * Represents an abstract task with a description and completion status.
+ * This is a base class for specific task types like Todo, Deadline, and Event.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -27,6 +31,10 @@ public abstract class Task {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Returns the type icon for the task.
+     * This must be implemented by subclasses to identify the task type.
+     */
     public abstract String getTypeIcon();
 
     @Override

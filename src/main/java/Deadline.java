@@ -1,3 +1,7 @@
+/**
+ * Represents a task that needs to be done before a specific date/time.
+ * Example: submit report by 11/10/2019 5pm
+ */
 public class Deadline extends Task {
     protected String by;
 
