@@ -1,25 +1,25 @@
-/**
- * Represents an executable user command.
- * Each subclass encapsulates the logic for one type of command.
- */
-public abstract class Command {
+/** Command to exit the application. */
+public class ExitCommand extends Command {
 
     /**
-     * Executes this command, potentially modifying tasks and producing UI output.
+     * Displays the goodbye message to the user.
      *
-     * @param tasks   the current task list
+     * @param tasks   the current task list (unused)
      * @param ui      the UI handler for output
-     * @param storage the storage handler for persistence
-     * @throws ChatException if the command cannot be completed
+     * @param storage the storage handler (unused)
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws ChatException;
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.showBye();
+    }
 
     /**
-     * Returns true if this command should terminate the application.
+     * Returns true to signal the application should exit.
      *
-     * @return true if exit command, false otherwise
+     * @return true
      */
+    @Override
     public boolean isExit() {
-        return false;
+        return true;
     }
 }
