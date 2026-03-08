@@ -8,14 +8,8 @@ public class Parser {
     private static final int COMMAND_MARK_LENGTH = 5;
     private static final int COMMAND_UNMARK_LENGTH = 7;
     private static final int COMMAND_DELETE_LENGTH = 7;
+    private static final int COMMAND_FIND_LENGTH = 5;
 
-    /**
-     * Parses the given input and returns the appropriate Command.
-     *
-     * @param input the raw user input string
-     * @return a Command ready to be executed
-     * @throws ChatException if the input is unrecognised or malformed
-     */
     public static Command parse(String input) throws ChatException {
         if (input.trim().isEmpty()) {
             throw new ChatException("Hmm, I didn't catch that. Could you try again?");
@@ -47,6 +41,14 @@ public class Parser {
             throw new ChatException("You forgot to tell me what the event is! Please add a description.");
         } else if (input.startsWith("event ")) {
             return parseEvent(input);
+        } else if (input.equals("find")) {
+            throw new ChatException("What would you like to find? Please provide a keyword.");
+        } else if (input.startsWith("find ")) {
+            String keyword = input.substring(COMMAND_FIND_LENGTH).trim();
+            if (keyword.isEmpty()) {
+                throw new ChatException("What would you like to find? Please provide a keyword.");
+            }
+            return new FindCommand(keyword);
         } else {
             throw new ChatException("I don't recognize that command. Type 'list' to see your tasks or try adding a todo, deadline, or event.");
         }
